@@ -11,13 +11,13 @@ public class RecipeClient {
     private final static String BASE_URL = "http://food2fork.com/api/";
 
     public RecipeClient() {
-        this.retrofit = new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    public RecipeService getRecipeService(){
-        return this.retrofit.create(RecipeService.class);
+    public RecipeService getRecipeService() {
+        return retrofit.create(RecipeService.class);
     }
 }

@@ -1,5 +1,7 @@
 package net.tjtorrico.facebookrecipes.api;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.tjtorrico.facebookrecipes.entities.Recipe;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
  */
 public class RecipeSearchResponse {
     private int count;
+    @SerializedName("recipes")
     private List<Recipe> recipes;
 
     public int getCount() {
@@ -29,7 +32,7 @@ public class RecipeSearchResponse {
 
     public Recipe getFirstRecipe(){
         Recipe first = null;
-        if(!recipes.isEmpty()){
+        if (!recipes.isEmpty()) {
             first = recipes.get(0);
         }
         return first;

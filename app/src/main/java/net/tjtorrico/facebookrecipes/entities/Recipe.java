@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import net.tjtorrico.facebookrecipes.db.RecipesDatabase;
 
@@ -11,7 +12,7 @@ import net.tjtorrico.facebookrecipes.db.RecipesDatabase;
  * Created by TJT on 27/06/2016.
  */
 @Table(database = RecipesDatabase.class)
-public class Recipe {
+public class Recipe extends BaseModel {
     @SerializedName("recipe_id")
     @PrimaryKey private String recipeId;
 
