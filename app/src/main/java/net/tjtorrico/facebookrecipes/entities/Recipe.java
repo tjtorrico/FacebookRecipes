@@ -57,7 +57,7 @@ public class Recipe {
         this.sourceURL = sourceURL;
     }
 
-    public boolean isFavorite() {
+    public boolean getFavorite() {
         return favorite;
     }
 
