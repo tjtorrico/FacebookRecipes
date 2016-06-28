@@ -16,5 +16,8 @@ public interface RecipeMainPresenter {
     void saveRecipe(Recipe recipe);
     void onEventMainThread(RecipeMainEvent event);
 
+    void imageReady();
+    void imageError(String error);
+
     RecipeMainView getView();
 }

@@ -22,18 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".recipemain.ui.RecipeMainActivity"></activity>
-
+        <activity android:name=".recipemain.ui.RecipeMainActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <provider android:authorities="@string/FACEBOOK_PROVIDER_AUTH"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="@string/FACEBOOK_PROVIDER_AUTH"
+            android:exported="true" />
+
+        <activity android:name=".RecipeListActivity"></activity>
     </application>
 
 </manifest>
