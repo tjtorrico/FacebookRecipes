@@ -12,5 +12,5 @@ public interface RecipeMainRepository {
 
     void getNextRecipe();
     void saveRecipe(Recipe recipe);
-    void saveRecipePage(int recipePage);
+    void setRecipePage(int recipePage);
 }

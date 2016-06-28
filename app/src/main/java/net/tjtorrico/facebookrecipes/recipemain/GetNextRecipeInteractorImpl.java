@@ -15,7 +15,7 @@ public class GetNextRecipeInteractorImpl implements GetNextRecipeInteractor{
     @Override
     public void execute() {
         int recipePage = new Random().nextInt(RecipeMainRepository.RECIPE_RANGE);
-        repository.saveRecipePage(recipePage);
+        repository.setRecipePage(recipePage);
         repository.getNextRecipe();
     }
 }
