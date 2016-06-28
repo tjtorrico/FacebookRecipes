@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RecipeMainActivity"></activity>
+        <activity android:name=".recipemain.ui.RecipeMainActivity"></activity>
 
         <activity
             android:name="com.facebook.FacebookActivity"

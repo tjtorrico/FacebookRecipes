@@ -15,7 +15,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import net.tjtorrico.facebookrecipes.R;
-import net.tjtorrico.facebookrecipes.RecipeMainActivity;
+import net.tjtorrico.facebookrecipes.recipemain.ui.RecipeMainActivity;
 
 import java.util.Arrays;
 
