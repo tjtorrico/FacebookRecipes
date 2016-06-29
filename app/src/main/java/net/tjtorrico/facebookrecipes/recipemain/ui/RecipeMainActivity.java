@@ -21,7 +21,7 @@ import com.bumptech.glide.request.target.Target;
 
 import net.tjtorrico.facebookrecipes.FacebookRecipeApp;
 import net.tjtorrico.facebookrecipes.R;
-import net.tjtorrico.facebookrecipes.RecipeListActivity;
+import net.tjtorrico.facebookrecipes.recipelist.ui.RecipeListActivity;
 import net.tjtorrico.facebookrecipes.entities.Recipe;
 import net.tjtorrico.facebookrecipes.libs.ImageLoader;
 import net.tjtorrico.facebookrecipes.recipemain.RecipeMainPresenter;
