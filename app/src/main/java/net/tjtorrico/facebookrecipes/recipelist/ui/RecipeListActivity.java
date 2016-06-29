@@ -16,6 +16,7 @@ import net.tjtorrico.facebookrecipes.entities.Recipe;
 import net.tjtorrico.facebookrecipes.libs.GlideImageLoader;
 import net.tjtorrico.facebookrecipes.libs.ImageLoader;
 import net.tjtorrico.facebookrecipes.recipelist.RecipeListPresenter;
+import net.tjtorrico.facebookrecipes.recipelist.di.RecipeListComponent;
 import net.tjtorrico.facebookrecipes.recipelist.ui.adapters.OnItemClickListener;
 import net.tjtorrico.facebookrecipes.recipelist.ui.adapters.RecipesAdapter;
 import net.tjtorrico.facebookrecipes.recipemain.ui.RecipeMainActivity;
@@ -33,8 +34,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    RecipesAdapter adapter;
-    RecipeListPresenter presenter;
+    private RecipesAdapter adapter;
+    private RecipeListPresenter presenter;
+    private RecipeListComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     }
 
     private void setupInjection() {
-
+        FacebookRecipeApp app = (FacebookRecipeApp) getApplication();
+        component = app.getRecipeListComponent(this, this, this);
+        presenter = getPresenter();
+        adapter = getAdapter();
     }
 
     @Override
@@ -130,5 +135,13 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     @Override
     public void onDeleteClick(Recipe recipe) {
         presenter.removeRecipe(recipe);
+    }
+
+    public RecipesAdapter getAdapter() {
+        return component.getAdapter();
+    }
+
+    public RecipeListPresenter getPresenter() {
+        return component.getPresenter();
     }
 }
