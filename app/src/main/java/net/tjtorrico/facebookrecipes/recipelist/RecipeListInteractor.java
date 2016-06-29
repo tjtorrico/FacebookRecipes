@@ -5,4 +5,5 @@ package net.tjtorrico.facebookrecipes.recipelist;
  */
 public interface RecipeListInteractor {
     void execute();
+    void searchFavorites();
 }

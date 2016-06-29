@@ -113,13 +113,16 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
         RequestListener glideRequestListener = new RequestListener() {
             @Override
             public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
-                presenter.imageError(e.getLocalizedMessage());
+                Snackbar.make(layoutContainer, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                //presenter.imageError(e.getLocalizedMessage());
                 return false;
             }
 
             @Override
             public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
-                presenter.imageReady();
+                hideProgress();
+                showUIElements();
+                //presenter.imageReady();
                 return false;
             }
         };

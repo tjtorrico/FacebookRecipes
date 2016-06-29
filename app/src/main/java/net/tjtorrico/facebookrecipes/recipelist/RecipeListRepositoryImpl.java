@@ -1,8 +1,10 @@
 package net.tjtorrico.facebookrecipes.recipelist;
 
 import com.raizlabs.android.dbflow.list.FlowCursorList;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import net.tjtorrico.facebookrecipes.entities.Recipe;
+import net.tjtorrico.facebookrecipes.entities.Recipe_Table;
 import net.tjtorrico.facebookrecipes.libs.EventBus;
 import net.tjtorrico.facebookrecipes.recipelist.events.RecipeListEvent;
 
@@ -36,6 +38,12 @@ public class RecipeListRepositoryImpl implements RecipeListRepository{
     public void removeRecipe(Recipe recipe) {
         recipe.delete();
         post(RecipeListEvent.DELETE_EVENT, Arrays.asList(recipe));
+    }
+
+    @Override
+    public void getFavoritesRecipes() {
+        List<Recipe> recipeList = new Select().from(Recipe.class).where(Recipe_Table.favorite.is(true)).queryList();
+        post(RecipeListEvent.READ_EVENT, recipeList);
     }
 
     private void post(int type, List<Recipe> recipeList){

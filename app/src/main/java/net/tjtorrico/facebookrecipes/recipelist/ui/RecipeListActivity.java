@@ -67,12 +67,28 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        switch (id){
+            case R.id.action_main:
+                navigateToMainScreen();
+                break;
+            case R.id.action_logout:
+                logout();
+                break;
+            case R.id.action_show_all:
+                presenter.showAll();
+                break;
+            case R.id.action_show_fav:
+                presenter.showFav();
+                break;
+        }
+        /*
         if (id == R.id.action_main) {
             navigateToMainScreen();
         }
         if (id == R.id.action_logout) {
             logout();
         }
+        */
         return super.onOptionsItemSelected(item);
     }
 
