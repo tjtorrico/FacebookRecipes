@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import net.tjtorrico.facebookrecipes.FacebookRecipeApp;
 import net.tjtorrico.facebookrecipes.R;
 import net.tjtorrico.facebookrecipes.entities.Recipe;
+import net.tjtorrico.facebookrecipes.libs.GlideImageLoader;
+import net.tjtorrico.facebookrecipes.libs.ImageLoader;
 import net.tjtorrico.facebookrecipes.recipelist.RecipeListPresenter;
 import net.tjtorrico.facebookrecipes.recipelist.ui.adapters.OnItemClickListener;
 import net.tjtorrico.facebookrecipes.recipelist.ui.adapters.RecipesAdapter;
@@ -41,8 +43,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListV
         ButterKnife.bind(this);
 
         setupToolbar();
-        setupRecyclerView();
         setupInjection();
+        setupRecyclerView();
 
         presenter.onCreate();
         presenter.getRecipes();
