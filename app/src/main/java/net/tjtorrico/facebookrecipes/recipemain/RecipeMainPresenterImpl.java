@@ -37,7 +37,7 @@ public class RecipeMainPresenterImpl implements RecipeMainPresenter{
     @Override
     public void dismissRecipe() {
         if(view != null){
-            view.dismissAnimatio();
+            view.dismissAnimation();
         }
         getNextRecipe();
     }
@@ -45,8 +45,8 @@ public class RecipeMainPresenterImpl implements RecipeMainPresenter{
     @Override
     public void getNextRecipe() {
         if(view != null){
-            view.hideUIElements();
             view.showProgress();
+            view.hideUIElements();
         }
         getNextInteractor.execute();
     }
