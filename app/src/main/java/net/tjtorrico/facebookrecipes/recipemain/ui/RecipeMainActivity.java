@@ -21,13 +21,14 @@ import net.tjtorrico.facebookrecipes.RecipeListActivity;
 import net.tjtorrico.facebookrecipes.entities.Recipe;
 import net.tjtorrico.facebookrecipes.libs.ImageLoader;
 import net.tjtorrico.facebookrecipes.recipemain.RecipeMainPresenter;
+import net.tjtorrico.facebookrecipes.recipemain.di.RecipeMainComponent;
 import net.tjtorrico.facebookrecipes.recipemain.events.RecipeMainEvent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RecipeMainActivity extends AppCompatActivity implements RecipeMainView{
+public class RecipeMainActivity extends AppCompatActivity implements RecipeMainView {
 
     @Bind(R.id.imgRecipe)
     ImageView imgRecipe;
@@ -43,6 +44,7 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     private Recipe currentRecipe;
     private ImageLoader imageLoader;
     private RecipeMainPresenter presenter;
+    private RecipeMainComponent component;
 
 
     @Override
@@ -71,7 +73,7 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
                 return false;
             }
         };
-        //imageLoader.setOnFinishedLoadingListener(glideRequestListener);
+        imageLoader.setOnFinishedLoadingListener(glideRequestListener);
     }
 
     @Override
@@ -89,9 +91,10 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_list){
+        if (id == R.id.action_list) {
             navigateToListScreen();
-        } if(id == R.id.action_logout){
+        }
+        if (id == R.id.action_logout) {
             logout();
         }
         return super.onOptionsItemSelected(item);
@@ -102,11 +105,15 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     }
 
     private void logout() {
-        FacebookRecipeApp app = (FacebookRecipeApp)getApplication();
+        FacebookRecipeApp app = (FacebookRecipeApp) getApplication();
         app.logout();
     }
 
     private void setupInjection() {
+        FacebookRecipeApp app = (FacebookRecipeApp) getApplication();
+        component = app.getRecipeMainComponent(this, this);
+        imageLoader = getImageLoader();
+        presenter = getPresenter();
     }
 
     @Override
@@ -142,14 +149,14 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     }
 
     @OnClick(R.id.imgKeep)
-    public void onClickKeep(){
-        if(currentRecipe != null){
+    public void onClickKeep() {
+        if (currentRecipe != null) {
             presenter.saveRecipe(currentRecipe);
         }
     }
 
     @OnClick(R.id.imgDismiss)
-    public void onClickDismiss(){
+    public void onClickDismiss() {
         presenter.dismissRecipe();
     }
 
@@ -168,5 +175,13 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     public void onGetRecipeError(String error) {
         String msgError = String.format(getString(R.string.recipemain_error), error);
         Snackbar.make(layoutContainer, msgError, Snackbar.LENGTH_SHORT).show();
+    }
+
+    public ImageLoader getImageLoader() {
+        return component.getImageLoader();
+    }
+
+    public RecipeMainPresenter getPresenter() {
+        return component.getPresenter();
     }
 }
