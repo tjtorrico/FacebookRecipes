@@ -57,39 +57,11 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
         ButterKnife.bind(this);
 
         setupInjection();
-        setupImageLoader();
+        setupImageLoading();
         setupGestureDetection();
+
         presenter.onCreate();
         presenter.getNextRecipe();
-    }
-
-    private void setupGestureDetection() {
-        final GestureDetector gestureDetector = new GestureDetector(this, new SwipeGestureDetector(this));
-        View.OnTouchListener gestureOnTouchListener = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        };
-
-        imgRecipe.setOnTouchListener(gestureOnTouchListener);
-    }
-
-    private void setupImageLoader() {
-        RequestListener glideRequestListener = new RequestListener() {
-            @Override
-            public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
-                presenter.imageError(e.getLocalizedMessage());
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
-                presenter.imageReady();
-                return false;
-            }
-        };
-        imageLoader.setOnFinishedLoadingListener(glideRequestListener);
     }
 
     @Override
@@ -123,6 +95,35 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     private void logout() {
         FacebookRecipeApp app = (FacebookRecipeApp) getApplication();
         app.logout();
+    }
+
+    private void setupGestureDetection() {
+        final GestureDetector gestureDetector = new GestureDetector(this, new SwipeGestureDetector(this));
+        View.OnTouchListener gestureOnTouchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        };
+
+        imgRecipe.setOnTouchListener(gestureOnTouchListener);
+    }
+
+    private void setupImageLoading() {
+        RequestListener glideRequestListener = new RequestListener() {
+            @Override
+            public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+                presenter.imageError(e.getLocalizedMessage());
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
+                presenter.imageReady();
+                return false;
+            }
+        };
+        imageLoader.setOnFinishedLoadingListener(glideRequestListener);
     }
 
     private void setupInjection() {

@@ -83,7 +83,7 @@ public class RecipeMainPresenterImpl implements RecipeMainPresenter{
     @Override
     public void imageReady() {
         if(view != null){
-            view.showProgress();
+            view.hideProgress();
             view.showUIElements();
         }
     }
